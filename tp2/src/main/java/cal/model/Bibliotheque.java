@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,18 @@ public class Bibliotheque {
     @OneToMany(mappedBy = "bibliotheque")
     private List<Document> documents = new ArrayList<>();
 
+    @OneToMany(mappedBy = "bibliotheque")
+    private List<Emprunt> emprunts = new ArrayList<>();
+
     public Bibliotheque(String nom) {
         this.nom = nom;
     }
 
+    public List<Document> getDocuments() {
+        return Collections.unmodifiableList(documents);
+    }
+
+    public List<Emprunt> getEmprunts() {
+        return Collections.unmodifiableList(emprunts);
+    }
 }
