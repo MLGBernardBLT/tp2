@@ -1,12 +1,10 @@
 package cal.model.document;
 
+import cal.model.Bibliotheque;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -20,6 +18,10 @@ public abstract class Document {
     private String auteur;
     private String editeur;
     private LocalDate anneePublication;
+
+    @ManyToOne
+    @JoinColumn(name = "documents")
+    private Bibliotheque bibliotheque;
 
     public Document(String titre, String auteur, String editeur, LocalDate anneePublication) {
         this.titre = titre;
