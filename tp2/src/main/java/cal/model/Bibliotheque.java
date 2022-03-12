@@ -1,6 +1,7 @@
 package cal.model;
 
-import java.awt.*;
+import cal.model.document.Document;
+
 import java.util.ArrayList;
 import java.util.List;
 
