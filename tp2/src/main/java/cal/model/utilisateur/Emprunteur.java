@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -18,12 +19,14 @@ public class Emprunteur extends Utilisateur {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private Emprunt emprunt;
-
+    @OneToMany(mappedBy = "emprunteur")
+    private List<Emprunt> emprunts = new ArrayList<>();
 
     public Emprunteur(String nom, String prenom) {
         super(nom, prenom);
+    }
+
+    public List<Emprunt> getEmprunts() {
+        return Collections.unmodifiableList(emprunts);
     }
 }

@@ -2,6 +2,7 @@ package cal.model;
 
 import cal.model.document.Document;
 import cal.model.utilisateur.Emprunteur;
+import cal.model.utilisateur.Utilisateur;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,8 +23,9 @@ public class Emprunt {
     @ManyToMany
     private List<Document> documents = new ArrayList<>();
 
-    @OneToMany(mappedBy = "emprunt")
-    private List<Emprunteur> emprunteurs = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Utilisateur emprunteur = new Emprunteur();
 
     @ManyToOne
     @JoinColumn(name = "id")
@@ -33,9 +35,5 @@ public class Emprunt {
 
     public Emprunt(LocalDateTime dateRemise) {
         this.dateRemise = dateRemise;
-    }
-
-    public List<Emprunteur> getEmprunteurs(){
-        return Collections.unmodifiableList(emprunteurs);
     }
 }
