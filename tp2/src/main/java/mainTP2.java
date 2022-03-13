@@ -6,5 +6,6 @@ public class mainTP2 {
         BibliothequeService bibliothequeService = new BibliothequeService(new BibliothequeDaoH2());
 
         var bibliothequeId = bibliothequeService.createBibliotheque("JavaTown");
+        var emprunteurId = bibliothequeService.createEmprunteur("Thomas Laforest", "Bernard");
     }
 }

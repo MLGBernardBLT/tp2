@@ -13,4 +13,8 @@ public class BibliothequeService {
     public long createBibliotheque(String nom) {
         return dao.createBibliotheque(nom);
     }
+
+    public long createEmprunteur(String nom, String prenom) {
+        return dao.createEmprunteur(nom, prenom);
+    }
 }

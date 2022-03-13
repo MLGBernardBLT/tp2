@@ -1,6 +1,8 @@
 package cal.persistent;
 
 import cal.model.Bibliotheque;
+import cal.model.utilisateur.Emprunteur;
+import cal.model.utilisateur.Utilisateur;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,5 +27,12 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
         final Bibliotheque bibliotheque = new Bibliotheque(nom);
         save(bibliotheque);
         return bibliotheque.getId();
+    }
+
+    @Override
+    public long createEmprunteur(String nom, String prenom) {
+        final Utilisateur utilisateur = new Emprunteur(nom, prenom);
+        save(utilisateur);
+        return utilisateur.getId();
     }
 }
