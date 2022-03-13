@@ -1,6 +1,7 @@
 package cal.model;
 
 import cal.model.document.Document;
+import cal.model.utilisateur.Utilisateur;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,15 +25,10 @@ public class Bibliotheque {
     @OneToMany(mappedBy = "bibliotheque")
     private List<Emprunt> emprunts = new ArrayList<>();
 
+    @OneToMany(mappedBy = "bibliotheque")
+    private List<Utilisateur> utilisateurs = new ArrayList<>();
+
     public Bibliotheque(String nom) {
         this.nom = nom;
-    }
-
-    public List<Document> getDocuments() {
-        return Collections.unmodifiableList(documents);
-    }
-
-    public List<Emprunt> getEmprunts() {
-        return Collections.unmodifiableList(emprunts);
     }
 }

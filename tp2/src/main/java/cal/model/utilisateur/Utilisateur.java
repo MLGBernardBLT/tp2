@@ -1,12 +1,10 @@
 package cal.model.utilisateur;
 
+import cal.model.Bibliotheque;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -18,6 +16,10 @@ public abstract class Utilisateur {
 
     private String nom;
     private String prenom;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Bibliotheque bibliotheque;
 
     public Utilisateur(String nom, String prenom) {
         this.nom = nom;

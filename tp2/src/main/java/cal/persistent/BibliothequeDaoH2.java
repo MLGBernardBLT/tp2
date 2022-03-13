@@ -1,12 +1,15 @@
 package cal.persistent;
 
 import cal.model.Bibliotheque;
+import cal.model.Emprunt;
 import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
+import jdk.jshell.execution.Util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 public class BibliothequeDaoH2 implements BibliothequeDao {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
@@ -17,6 +20,17 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
         em.getTransaction().begin();
 
         em.persist(t);
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    @Override
+    public <T> void merge(T t) {
+        final EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        em.merge(t);
 
         em.getTransaction().commit();
         em.close();
@@ -34,5 +48,32 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
         final Utilisateur utilisateur = new Emprunteur(nom, prenom);
         save(utilisateur);
         return utilisateur.getId();
+    }
+
+    @Override
+    public Emprunteur getEmprunteurAvecBibliotheque(long id) {
+        final EntityManager em = emf.createEntityManager();
+
+        final TypedQuery<Emprunteur> query = em.createQuery(
+                "SELECT e from Emprunt e LEFT JOIN FETCH e.bibliotheque eb WHERE e.id = :emprunteurId"
+                , Emprunteur.class);
+        query.setParameter("emprunteurId", id);
+        final Emprunteur emprunteur = query.getSingleResult();
+
+        em.getTransaction().commit();
+        em.close();
+        return emprunteur;
+    }
+
+    @Override
+    public Bibliotheque getBibliotheque(long id) {
+        final EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        final Bibliotheque bibliotheque = em.find(Bibliotheque.class, id);
+
+        em.getTransaction().commit();
+        em.close();
+        return bibliotheque;
     }
 }

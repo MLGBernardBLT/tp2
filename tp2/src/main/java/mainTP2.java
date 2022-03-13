@@ -7,5 +7,7 @@ public class mainTP2 {
 
         var bibliothequeId = bibliothequeService.createBibliotheque("JavaTown");
         var emprunteurId = bibliothequeService.createEmprunteur("Thomas Laforest", "Bernard");
+
+        bibliothequeService.addEmprunteurToBibliotheque(emprunteurId, bibliothequeId);
     }
 }
