@@ -1,5 +1,6 @@
 package cal.service;
 
+import cal.model.utilisateur.Emprunteur;
 import cal.persistence.BibliothequeDao;
 import cal.persistence.BibliothequeDaoH2;
 
@@ -27,5 +28,9 @@ public class BibliothequeService {
 
         dao.merge(emprunteur);
         dao.merge(bibliotheque);
+    }
+
+    public Emprunteur getEmprunteurAvecBibliotheque(long emprunteurId) {
+        return dao.getEmprunteurAvecBibliotheque(emprunteurId);
     }
 }
