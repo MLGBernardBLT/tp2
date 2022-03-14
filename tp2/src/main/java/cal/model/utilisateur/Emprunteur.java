@@ -15,10 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Emprunteur extends Utilisateur {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
     @OneToMany(mappedBy = "emprunteur")
     private List<Emprunt> emprunts = new ArrayList<>();
 

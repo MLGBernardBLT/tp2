@@ -1,12 +1,8 @@
 package cal.service;
 
-import cal.model.utilisateur.Utilisateur;
-import cal.persistent.BibliothequeDao;
-import cal.persistent.BibliothequeDaoH2;
-import com.sun.xml.bind.v2.TODO;
+import cal.persistence.BibliothequeDao;
+import cal.persistence.BibliothequeDaoH2;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class BibliothequeService {
     private BibliothequeDao dao;

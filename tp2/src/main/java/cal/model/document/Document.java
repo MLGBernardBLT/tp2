@@ -16,6 +16,7 @@ import java.util.List;
 public abstract class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "document_id")
     private long id;
     private String titre;
     private String auteur;
@@ -23,7 +24,7 @@ public abstract class Document {
     private LocalDate anneePublication;
 
     @ManyToOne
-    @JoinColumn(name = "documents")
+    @JoinColumn(name = "bibliotheque_id")
     private Bibliotheque bibliotheque;
 
     @ManyToMany

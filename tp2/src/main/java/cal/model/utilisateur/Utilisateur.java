@@ -13,12 +13,11 @@ public abstract class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     private String nom;
     private String prenom;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "bibliotheque_id")
     private Bibliotheque bibliotheque;
 
     public Utilisateur(String nom, String prenom) {

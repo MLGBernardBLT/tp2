@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -18,17 +17,18 @@ import java.util.List;
 public class Emprunt {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "emprunt_id")
     private long id;
 
     @ManyToMany
     private List<Document> documents = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "emprunteur_id")
     private Utilisateur emprunteur = new Emprunteur();
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "bibliotheque_id")
     private Bibliotheque bibliotheque;
 
     private LocalDateTime dateRemise;

@@ -1,4 +1,4 @@
-package cal.persistent;
+package cal.persistence;
 import cal.model.Bibliotheque;
 import cal.model.utilisateur.Emprunteur;
 

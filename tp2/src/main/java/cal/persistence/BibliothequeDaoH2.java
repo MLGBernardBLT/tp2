@@ -1,10 +1,8 @@
-package cal.persistent;
+package cal.persistence;
 
 import cal.model.Bibliotheque;
-import cal.model.Emprunt;
 import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
-import jdk.jshell.execution.Util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -53,6 +51,7 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     @Override
     public Emprunteur getEmprunteurAvecBibliotheque(long id) {
         final EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
 
         final TypedQuery<Emprunteur> query = em.createQuery(
                 "SELECT e from Emprunt e LEFT JOIN FETCH e.bibliotheque eb WHERE e.id = :emprunteurId"
