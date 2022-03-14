@@ -54,7 +54,7 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
         em.getTransaction().begin();
 
         final TypedQuery<Emprunteur> query = em.createQuery(
-                "SELECT e from Emprunt e LEFT JOIN FETCH e.bibliotheque eb WHERE e.id = :emprunteurId"
+                "SELECT e from Emprunteur e LEFT JOIN FETCH e.bibliotheque eb WHERE e.id = :emprunteurId"
                 , Emprunteur.class);
         query.setParameter("emprunteurId", id);
         final Emprunteur emprunteur = query.getSingleResult();
