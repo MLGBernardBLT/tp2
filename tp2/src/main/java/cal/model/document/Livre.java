@@ -20,4 +20,8 @@ public class Livre extends Document{
         this.nbrePage = nbrePage;
         this.exemplaires = exemplaires;
     }
+
+    public void ajoutExemplaire(){
+        exemplaires++;
+    }
 }

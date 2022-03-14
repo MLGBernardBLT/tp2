@@ -1,6 +1,8 @@
 package cal.persistence;
 
 import cal.model.Bibliotheque;
+import cal.model.document.Document;
+import cal.model.document.Livre;
 import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
 
@@ -8,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import java.time.LocalDate;
 
 public class BibliothequeDaoH2 implements BibliothequeDao {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
@@ -49,6 +52,13 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     }
 
     @Override
+    public long createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires) {
+        final Document livre = new Livre(titre, auteur, editeur, anneePublication, nbrePage, exemplaires);
+        save(livre);
+        return livre.getId();
+    }
+
+    @Override
     public Emprunteur getEmprunteur(long id) {
         final EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -77,4 +87,6 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
         em.close();
         return bibliotheque;
     }
+
+
 }

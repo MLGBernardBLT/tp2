@@ -1,9 +1,12 @@
 package cal.service;
 
 import cal.model.Bibliotheque;
+import cal.model.document.Livre;
 import cal.model.utilisateur.Emprunteur;
 import cal.persistence.BibliothequeDao;
 import cal.persistence.BibliothequeDaoH2;
+
+import java.time.LocalDate;
 
 
 public class BibliothequeService {
@@ -38,5 +41,9 @@ public class BibliothequeService {
 
     public Bibliotheque getBibliotheque(long bibliothequeId) {
         return dao.getBibliothequeAvecUtilisateur(bibliothequeId);
+    }
+
+    public long createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires){
+        return dao.createLivre(titre, auteur, editeur, anneePublication, nbrePage, exemplaires);
     }
 }
