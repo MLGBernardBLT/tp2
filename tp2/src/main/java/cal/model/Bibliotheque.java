@@ -24,9 +24,6 @@ public class Bibliotheque {
     private List<Document> documents = new ArrayList<>();
 
     @OneToMany(mappedBy = "bibliotheque")
-    private List<Emprunt> emprunts = new ArrayList<>();
-
-    @OneToMany(mappedBy = "bibliotheque")
     private List<Utilisateur> utilisateurs = new ArrayList<>();
 
     public Bibliotheque(String nom) {
