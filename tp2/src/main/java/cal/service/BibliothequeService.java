@@ -27,10 +27,8 @@ public class BibliothequeService {
         var emprunteur = dao.getEmprunteurAvecBibliotheque(emprunteurId);
         var bibliotheque = dao.getBibliotheque(bibliothequeId);
 
-        // TODO: 2022-03-13 Essayer de trouver un autre moyen pour set un utilisateur.
-        List<Utilisateur> liste = Arrays.asList(emprunteur);
+        bibliotheque.getUtilisateurs().add(emprunteur);
 
-        bibliotheque.setUtilisateurs(liste);
         dao.merge(emprunteur);
         dao.merge(bibliotheque);
     }
