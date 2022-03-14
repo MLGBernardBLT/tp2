@@ -26,7 +26,7 @@ public class Emprunt {
     @ManyToOne
     @JoinColumn(name = "emprunteur_id")
     private Utilisateur emprunteur = new Emprunteur();
-    
+
 
     private LocalDateTime dateRemise;
 

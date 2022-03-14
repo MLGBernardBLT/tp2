@@ -22,8 +22,8 @@ public class BibliothequeService {
     }
 
     public void addEmprunteurToBibliotheque(long emprunteurId, long bibliothequeId) {
-        var emprunteur = dao.getEmprunteurAvecBibliotheque(emprunteurId);
-        var bibliotheque = dao.getBibliotheque(bibliothequeId);
+        var emprunteur = dao.getEmprunteur(emprunteurId);
+        var bibliotheque = dao.getBibliothequeAvecUtilisateur(bibliothequeId);
 
         bibliotheque.getUtilisateurs().add(emprunteur);
         System.out.println(bibliotheque.getUtilisateurs());
@@ -33,10 +33,10 @@ public class BibliothequeService {
     }
 
     public Emprunteur getEmprunteurAvecBibliotheque(long emprunteurId) {
-        return dao.getEmprunteurAvecBibliotheque(emprunteurId);
+        return dao.getEmprunteur(emprunteurId);
     }
 
     public Bibliotheque getBibliotheque(long bibliothequeId) {
-        return dao.getBibliotheque(bibliothequeId);
+        return dao.getBibliothequeAvecUtilisateur(bibliothequeId);
     }
 }

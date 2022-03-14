@@ -49,27 +49,29 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     }
 
     @Override
-    public Emprunteur getEmprunteurAvecBibliotheque(long id) {
+    public Emprunteur getEmprunteur(long id) {
         final EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        final TypedQuery<Emprunteur> query = em.createQuery(
-                "SELECT e from Emprunteur e LEFT JOIN FETCH e.bibliotheque eb WHERE e.id = :emprunteurId"
-                , Emprunteur.class);
-        query.setParameter("emprunteurId", id);
-        final Emprunteur emprunteur = query.getSingleResult();
+        final Emprunteur emprunteur = em.find(Emprunteur.class, id);
 
         em.getTransaction().commit();
         em.close();
         return emprunteur;
+
+
     }
 
     @Override
-    public Bibliotheque getBibliotheque(long id) {
+    public Bibliotheque getBibliothequeAvecUtilisateur(long id) {
         final EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        final Bibliotheque bibliotheque = em.find(Bibliotheque.class, id);
+        final TypedQuery<Bibliotheque> query = em.createQuery(
+                "SELECT b from Bibliotheque b LEFT JOIN FETCH b.utilisateurs bu WHERE b.id = :bibliothequeId"
+                , Bibliotheque.class);
+        query.setParameter("bibliothequeId", id);
+        final Bibliotheque bibliotheque = query.getSingleResult();
 
         em.getTransaction().commit();
         em.close();

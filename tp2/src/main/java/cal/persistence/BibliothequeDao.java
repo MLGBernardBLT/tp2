@@ -9,7 +9,7 @@ public interface BibliothequeDao {
     long createBibliotheque(String nom);
     long createEmprunteur(String nom, String prenom);
 
-    Emprunteur getEmprunteurAvecBibliotheque(long id);
+    Emprunteur getEmprunteur(long id);
 
-    Bibliotheque getBibliotheque(long id);
+    Bibliotheque getBibliothequeAvecUtilisateur(long id);
 }
