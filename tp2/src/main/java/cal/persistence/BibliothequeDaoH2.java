@@ -54,9 +54,20 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     @Override
     public long createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires) {
         final Document livre = new Livre(titre, auteur, editeur, anneePublication, nbrePage, exemplaires);
+//        if(livreDejaCree(livre)){
+//
+//        }else{
+//            save(livre);
+//        }
         save(livre);
         return livre.getId();
     }
+
+//    private boolean livreDejaCree(Livre livre) {
+//        final EntityManager em = emf.createEntityManager();
+//        em.getTransaction().begin();
+//        return em.find(Livre.class, livre.getId()) != null;
+//    }
 
     @Override
     public Emprunteur getEmprunteur(long id) {
