@@ -1,6 +1,5 @@
 import cal.model.Bibliotheque;
 import cal.model.utilisateur.Emprunteur;
-import cal.model.utilisateur.Utilisateur;
 import cal.persistence.BibliothequeDaoH2;
 import cal.service.BibliothequeService;
 
@@ -14,6 +13,12 @@ public class MainTP2 {
         bibliothequeService.addEmprunteurToBibliotheque(emprunteurId, bibliothequeId);
         final Emprunteur emprunteur = bibliothequeService.getEmprunteurAvecBibliotheque(emprunteurId);
 
-        System.out.println(emprunteur);
+        System.out.println("\n" +emprunteur + "\n");
+
+        final Bibliotheque bibliotheque = bibliothequeService.getBibliotheque(bibliothequeId);
+
+        System.out.println(bibliotheque);
+
+
     }
 }
