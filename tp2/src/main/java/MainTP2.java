@@ -1,4 +1,6 @@
 import cal.model.Bibliotheque;
+import cal.model.document.Document;
+import cal.model.document.Livre;
 import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
 import cal.persistence.BibliothequeDaoH2;
@@ -22,6 +24,6 @@ public class MainTP2 {
 
         clientService.addUserToBibliotheque(user.getId(), bibliotheque.getId());
 
-
+        Document livre = bibliothequeService.createLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010,8,21 ), 235, 2);
     }
 }

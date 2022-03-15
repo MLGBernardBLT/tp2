@@ -47,35 +47,11 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     }
 
     @Override
-    public long createEmprunteur(String nom, String prenom) {
-        final Utilisateur utilisateur = new Emprunteur(nom, prenom);
-        save(utilisateur);
-        return utilisateur.getId();
-    }
-
-    @Override
-    public long createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires) {
+    public Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires) {
         final Document livre = new Livre(titre, auteur, editeur, anneePublication, nbrePage, exemplaires);
-//        if(livreDejaCree(livre)){
-//
-//        }else{
-//            save(livre);
-//        }
         save(livre);
-        return livre.getId();
+        return livre;
     }
-
-    @Override
-    public void addEmprunteurToBibliotheque(Emprunteur emprunteur, Bibliotheque bibliotheque) {
-        merge(emprunteur);
-        merge(bibliotheque);
-    }
-
-//    private boolean livreDejaCree(Livre livre) {
-//        final EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
-//        return em.find(Livre.class, livre.getId()) != null;
-//    }
 
     @Override
     public Bibliotheque getBibliotheque(long bibliothequeId) {
@@ -89,21 +65,21 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
         return bibliotheque;
     }
 
-    @Override
-    public Bibliotheque getBibliothequeAvecUtilisateur(long id) {
-        final EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
-        final TypedQuery<Bibliotheque> query = em.createQuery(
-                "SELECT b from Bibliotheque b LEFT JOIN FETCH b.utilisateurs bu WHERE b.id = :bibliothequeId"
-                , Bibliotheque.class);
-        query.setParameter("bibliothequeId", id);
-        final Bibliotheque bibliotheque = query.getSingleResult();
-
-        em.getTransaction().commit();
-        em.close();
-        return bibliotheque;
-    }
+//    @Override
+//    public Bibliotheque getBibliothequeAvecUtilisateur(long id) {
+//        final EntityManager em = emf.createEntityManager();
+//        em.getTransaction().begin();
+//
+//        final TypedQuery<Bibliotheque> query = em.createQuery(
+//                "SELECT b from Bibliotheque b LEFT JOIN FETCH b.utilisateurs bu WHERE b.id = :bibliothequeId"
+//                , Bibliotheque.class);
+//        query.setParameter("bibliothequeId", id);
+//        final Bibliotheque bibliotheque = query.getSingleResult();
+//
+//        em.getTransaction().commit();
+//        em.close();
+//        return bibliotheque;
+//    }
 
 
 }
