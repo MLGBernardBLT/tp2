@@ -20,10 +20,11 @@ public class MainTP2 {
 
         Bibliotheque bibliotheque = bibliothequeService.createBibliotheque("JavaTown");
         Utilisateur user = clientService.createUser("Thomas Laforest", "Bernard");
-        System.out.println(user);
 
         clientService.addUserToBibliotheque(user.getId(), bibliotheque.getId());
 
         Document livre = bibliothequeService.createLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010,8,21 ), 235, 2);
+
+        bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
     }
 }

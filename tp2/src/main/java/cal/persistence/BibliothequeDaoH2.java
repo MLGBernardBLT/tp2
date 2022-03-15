@@ -3,13 +3,10 @@ package cal.persistence;
 import cal.model.Bibliotheque;
 import cal.model.document.Document;
 import cal.model.document.Livre;
-import cal.model.utilisateur.Emprunteur;
-import cal.model.utilisateur.Utilisateur;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 
 public class BibliothequeDaoH2 implements BibliothequeDao {
@@ -63,6 +60,24 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
         em.getTransaction().commit();
         em.close();
         return bibliotheque;
+    }
+
+    @Override
+    public Document getLivre(long livreId) {
+        final EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        final Livre livre = em.find(Livre.class, livreId);
+
+        em.getTransaction().commit();
+        em.close();
+        return livre;
+    }
+
+    @Override
+    public void addLivreToBibliotheque(Document livre, Bibliotheque bibliotheque) {
+        merge(livre);
+        merge(bibliotheque);
     }
 
 //    @Override

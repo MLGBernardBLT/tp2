@@ -11,4 +11,8 @@ public interface BibliothequeDao {
     Bibliotheque createBibliotheque(String nom);
     Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires);
     Bibliotheque getBibliotheque(long bibliothequeId);
+
+    Document getLivre(long livreId);
+
+    void addLivreToBibliotheque(Document livre, Bibliotheque bibliotheque);
 }

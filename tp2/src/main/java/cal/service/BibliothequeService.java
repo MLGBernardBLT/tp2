@@ -2,8 +2,6 @@ package cal.service;
 
 import cal.model.Bibliotheque;
 import cal.model.document.Document;
-import cal.model.document.Livre;
-import cal.model.utilisateur.Emprunteur;
 import cal.persistence.BibliothequeDao;
 import cal.persistence.BibliothequeDaoH2;
 
@@ -27,5 +25,15 @@ public class BibliothequeService {
 
     public Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires){
         return dao.createLivre(titre, auteur, editeur, anneePublication, nbrePage, exemplaires);
+    }
+
+    public void addLivreToBibliotheque(long livreId, long bibliothequeId) {
+        Bibliotheque bibliotheque = dao.getBibliotheque(bibliothequeId);
+        Document livre = dao.getLivre(livreId);
+
+        livre.setBibliotheque(bibliotheque);
+        bibliotheque.getDocuments().add(livre);
+
+        dao.addLivreToBibliotheque(livre, bibliotheque);
     }
 }
