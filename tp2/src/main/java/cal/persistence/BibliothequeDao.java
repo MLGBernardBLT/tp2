@@ -11,12 +11,8 @@ public interface BibliothequeDao {
     <T> void merge(T t);
     Bibliotheque createBibliotheque(String nom);
     long createEmprunteur(String nom, String prenom);
-
-    Emprunteur getEmprunteur(long id);
-
     Bibliotheque getBibliothequeAvecUtilisateur(long id);
-
     long createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires);
-
     void addEmprunteurToBibliotheque(Emprunteur emprunteur, Bibliotheque bibliotheque);
+    Bibliotheque getBibliotheque(long bibliothequeId);
 }

@@ -24,23 +24,9 @@ public class BibliothequeService {
         return dao.createEmprunteur(nom, prenom);
     }
 
-    public void addEmprunteurToBibliotheque(long emprunteurId, long bibliothequeId) {
-        var emprunteur = dao.getEmprunteur(emprunteurId);
-        var bibliotheque = dao.getBibliothequeAvecUtilisateur(bibliothequeId);
-
-        bibliotheque.getUtilisateurs().add(emprunteur);
-        System.out.println(bibliotheque.getUtilisateurs());
-
-        dao.addEmprunteurToBibliotheque(emprunteur, bibliotheque);
-
-    }
-
-    public Emprunteur getEmprunteurAvecBibliotheque(long emprunteurId) {
-        return dao.getEmprunteur(emprunteurId);
-    }
 
     public Bibliotheque getBibliotheque(long bibliothequeId) {
-        return dao.getBibliothequeAvecUtilisateur(bibliothequeId);
+        return dao.getBibliotheque(bibliothequeId);
     }
 
     public long createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires){

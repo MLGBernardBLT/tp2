@@ -10,12 +10,13 @@ import java.time.LocalDate;
 
 public class MainTP2 {
     public static void main(String[] args) {
-        ClientService clientService = new ClientService(new UserDaoH2());
+        ClientService clientService = new ClientService(new UserDaoH2(), new BibliothequeDaoH2());
         BibliothequeService bibliothequeService = new BibliothequeService(new BibliothequeDaoH2());
 
         Bibliotheque bibliotheque = bibliothequeService.createBibliotheque("JavaTown");
         Utilisateur user = clientService.createUser("Thomas Laforest", "Bernard");
         System.out.println(user);
-        
+
+        clientService.addUserToBibliotheque(user.getId(), bibliotheque.getId());
     }
 }

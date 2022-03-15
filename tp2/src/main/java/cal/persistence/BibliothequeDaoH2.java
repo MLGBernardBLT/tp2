@@ -15,6 +15,8 @@ import java.time.LocalDate;
 public class BibliothequeDaoH2 implements BibliothequeDao {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
 
+
+
     @Override
     public <T> void save(T t) {
         final EntityManager em = emf.createEntityManager();
@@ -76,17 +78,15 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
 //    }
 
     @Override
-    public Emprunteur getEmprunteur(long id) {
+    public Bibliotheque getBibliotheque(long bibliothequeId) {
         final EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        final Emprunteur emprunteur = em.find(Emprunteur.class, id);
+        final Bibliotheque bibliotheque = em.find(Bibliotheque.class, bibliothequeId);
 
         em.getTransaction().commit();
         em.close();
-        return emprunteur;
-
-
+        return bibliotheque;
     }
 
     @Override
