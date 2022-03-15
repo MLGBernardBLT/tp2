@@ -4,6 +4,7 @@ import cal.model.Bibliotheque;
 import cal.model.Emprunt;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@SuperBuilder
 public abstract class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

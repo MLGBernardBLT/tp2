@@ -23,8 +23,10 @@ public class MainTP2 {
 
         clientService.addUserToBibliotheque(user.getId(), bibliotheque.getId());
 
-        Document livre = bibliothequeService.createLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010,8,21 ), 235, 2);
+        Document livre = bibliothequeService.createLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010,8,21 ), 235);
 
+        bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
+        //Test avec un deuxième livre
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
     }
 }

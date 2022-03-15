@@ -4,9 +4,8 @@ import cal.model.Bibliotheque;
 import cal.model.document.Document;
 import cal.model.document.Livre;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 
 public class BibliothequeDaoH2 implements BibliothequeDao {
@@ -44,8 +43,8 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     }
 
     @Override
-    public Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires) {
-        final Document livre = new Livre(titre, auteur, editeur, anneePublication, nbrePage, exemplaires);
+    public Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage) {
+        final Document livre = new Livre(titre, auteur, editeur, anneePublication, nbrePage);
         save(livre);
         return livre;
     }
@@ -75,9 +74,35 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     }
 
     @Override
-    public void addLivreToBibliotheque(Document livre, Bibliotheque bibliotheque) {
-        merge(livre);
-        merge(bibliotheque);
+    public void addLivreToBibliotheque(Livre livre, Bibliotheque bibliotheque) {
+        if(livreExist(livre)){
+            livre.ajoutExemplaire();
+            merge(livre);
+            merge(bibliotheque);
+        }else {
+            merge(livre);
+            merge(bibliotheque);
+        }
+    }
+
+    private boolean livreExist(Livre livre) {
+        final EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        final TypedQuery<Document> query = em.createQuery(
+                "select d from Document d left join fetch d.bibliotheque db where d.id = :livreId"
+                    , Document.class);
+        query.setParameter("livreId", livre.getId());
+        try{
+            query.getSingleResult();
+            em.getTransaction().commit();
+            em.close();
+            return true;
+        }catch (NoResultException e){
+            em.getTransaction().commit();
+            em.close();
+            return false;
+        }
     }
 
 //    @Override
