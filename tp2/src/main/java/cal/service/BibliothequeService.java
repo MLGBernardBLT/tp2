@@ -16,7 +16,7 @@ public class BibliothequeService {
         this.dao = dao;
     }
 
-    public long createBibliotheque(String nom) {
+    public Bibliotheque createBibliotheque(String nom) {
         return dao.createBibliotheque(nom);
     }
 

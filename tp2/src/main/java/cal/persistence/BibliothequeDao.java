@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public interface BibliothequeDao {
     <T> void save(T t);
     <T> void merge(T t);
-    long createBibliotheque(String nom);
+    Bibliotheque createBibliotheque(String nom);
     long createEmprunteur(String nom, String prenom);
 
     Emprunteur getEmprunteur(long id);

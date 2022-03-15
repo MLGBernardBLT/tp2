@@ -38,10 +38,10 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     }
 
     @Override
-    public long createBibliotheque(String nom) {
+    public Bibliotheque createBibliotheque(String nom) {
         final Bibliotheque bibliotheque = new Bibliotheque(nom);
         save(bibliotheque);
-        return bibliotheque.getId();
+        return bibliotheque;
     }
 
     @Override
