@@ -63,6 +63,12 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
         return livre.getId();
     }
 
+    @Override
+    public void addEmprunteurToBibliotheque(Emprunteur emprunteur, Bibliotheque bibliotheque) {
+        merge(emprunteur);
+        merge(bibliotheque);
+    }
+
 //    private boolean livreDejaCree(Livre livre) {
 //        final EntityManager em = emf.createEntityManager();
 //        em.getTransaction().begin();

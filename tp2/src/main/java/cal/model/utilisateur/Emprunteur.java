@@ -3,6 +3,7 @@ package cal.model.utilisateur;
 import cal.model.Emprunt;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @SuperBuilder
+@ToString(callSuper = true)
 public class Emprunteur extends Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -31,8 +31,8 @@ public class BibliothequeService {
         bibliotheque.getUtilisateurs().add(emprunteur);
         System.out.println(bibliotheque.getUtilisateurs());
 
-        dao.merge(emprunteur);
-        dao.merge(bibliotheque);
+        dao.addEmprunteurToBibliotheque(emprunteur, bibliotheque);
+
     }
 
     public Emprunteur getEmprunteurAvecBibliotheque(long emprunteurId) {

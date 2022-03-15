@@ -1,28 +1,18 @@
 import cal.model.Bibliotheque;
 import cal.model.utilisateur.Emprunteur;
+import cal.model.utilisateur.Utilisateur;
 import cal.persistence.BibliothequeDaoH2;
+import cal.persistence.UserDaoH2;
 import cal.service.BibliothequeService;
+import cal.service.ClientService;
 
 import java.time.LocalDate;
 
 public class MainTP2 {
     public static void main(String[] args) {
-        BibliothequeService bibliothequeService = new BibliothequeService(new BibliothequeDaoH2());
+        ClientService clientService = new ClientService(new UserDaoH2());
+        Utilisateur user = clientService.createUser("Thomas Laforest", "Bernard");
+        System.out.println(user);
 
-        var bibliothequeId = bibliothequeService.createBibliotheque("JavaTown");
-        var emprunteurId = bibliothequeService.createEmprunteur("Thomas Laforest", "Bernard");
-
-        bibliothequeService.addEmprunteurToBibliotheque(emprunteurId, bibliothequeId);
-        final Emprunteur emprunteur = bibliothequeService.getEmprunteurAvecBibliotheque(emprunteurId);
-
-        System.out.println("\n" +emprunteur + "\n");
-
-        final Bibliotheque bibliotheque = bibliothequeService.getBibliotheque(bibliothequeId);
-
-        System.out.println(bibliotheque);
-
-        var livreId = bibliothequeService.createLivre("Red Eyes Sword", "Tetsuya Tashiro", "Kurokawa", LocalDate.of(2010,8,21), 236, 2);
-
-        System.out.println(livreId);
     }
 }

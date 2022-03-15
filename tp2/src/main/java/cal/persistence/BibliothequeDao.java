@@ -17,4 +17,6 @@ public interface BibliothequeDao {
     Bibliotheque getBibliothequeAvecUtilisateur(long id);
 
     long createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage, int exemplaires);
+
+    void addEmprunteurToBibliotheque(Emprunteur emprunteur, Bibliotheque bibliotheque);
 }
