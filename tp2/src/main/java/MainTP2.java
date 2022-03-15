@@ -18,5 +18,7 @@ public class MainTP2 {
         System.out.println(user);
 
         clientService.addUserToBibliotheque(user.getId(), bibliotheque.getId());
+
+
     }
 }

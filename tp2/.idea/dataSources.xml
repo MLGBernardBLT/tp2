@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:h2:mem:tp2;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="tp2@localhost" uuid="7d2c4c3f-eac8-48ef-82ab-21e8cf36fca7">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/tp2</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
