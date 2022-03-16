@@ -25,8 +25,8 @@ public class BibliothequeService {
         return dao.getBibliotheque(bibliothequeId);
     }
 
-    public Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage){
-        return dao.createLivre(titre, auteur, editeur, anneePublication, nbrePage);
+    public Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, String genre, int nbrePage){
+        return dao.createLivre(titre, auteur, editeur, anneePublication, genre, nbrePage);
     }
 
     public void addLivreToBibliotheque(long livreId, long bibliothequeId) {

@@ -1,7 +1,5 @@
 import cal.model.Bibliotheque;
 import cal.model.document.Document;
-import cal.model.document.Livre;
-import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
 import cal.persistence.BibliothequeDaoH2;
 import cal.persistence.EmpruntDaoH2;
@@ -9,10 +7,7 @@ import cal.persistence.UserDaoH2;
 import cal.service.BibliothequeService;
 import cal.service.ClientService;
 import cal.service.EmpruntService;
-
-import javax.print.Doc;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public class MainTP2 {
@@ -26,7 +21,7 @@ public class MainTP2 {
 
         clientService.addUserToBibliotheque(user.getId(), bibliotheque.getId());
 
-        Document livre = bibliothequeService.createLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010,8,21 ), 235);
+        Document livre = bibliothequeService.createLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010,8,21 ), "roman", 235);
 
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
         //Test avec un deuxième livre
@@ -46,5 +41,7 @@ public class MainTP2 {
         System.out.println(livreRechercheDate);
         List<Document> livreRechercheDateFausse = bibliothequeService.rechercheLivreDate(LocalDate.of(2012,8,21 ));
         System.out.println(livreRechercheDateFausse);
+
+
     }
 }

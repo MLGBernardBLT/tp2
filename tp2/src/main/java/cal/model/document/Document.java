@@ -25,6 +25,7 @@ public abstract class Document {
     private String auteur;
     private String editeur;
     private LocalDate anneePublication;
+    private String genre;
 
     @ManyToOne
     @JoinColumn(name = "bibliotheque_id")
@@ -34,10 +35,11 @@ public abstract class Document {
     @ManyToMany
     private List<Emprunt> emprunts = new ArrayList<>();
 
-    public Document(String titre, String auteur, String editeur, LocalDate anneePublication) {
+    public Document(String titre, String auteur, String editeur, LocalDate anneePublication, String genre) {
         this.titre = titre;
         this.auteur = auteur;
         this.editeur = editeur;
         this.anneePublication = anneePublication;
+        this.genre = genre;
     }
 }

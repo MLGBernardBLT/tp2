@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class DVD extends Document{
-    public DVD(String titre, String auteur, String editeur, LocalDate anneePublication) {
-        super(titre, auteur, editeur, anneePublication);
+    public DVD(String titre, String auteur, String editeur, LocalDate anneePublication, String genre) {
+        super(titre, auteur, editeur, anneePublication, genre);
     }
 }

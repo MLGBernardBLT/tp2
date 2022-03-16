@@ -44,8 +44,8 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     }
 
     @Override
-    public Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, int nbrePage) {
-        final Document livre = new Livre(titre, auteur, editeur, anneePublication, nbrePage);
+    public Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, String genre,int nbrePage) {
+        final Document livre = new Livre(titre, auteur, editeur, anneePublication, genre, nbrePage);
         save(livre);
         return livre;
     }
