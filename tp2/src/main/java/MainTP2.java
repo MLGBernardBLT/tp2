@@ -1,7 +1,6 @@
 import cal.model.Bibliotheque;
 import cal.model.Emprunt;
 import cal.model.document.Document;
-import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
 import cal.persistence.BibliothequeDaoH2;
 import cal.persistence.EmpruntDaoH2;
@@ -62,6 +61,11 @@ public class MainTP2 {
         }catch(NullPointerException e){
             System.out.println("Donne bien null");
         }
+
+        List<Emprunt> emprunts = clientService.getListeEmprunts(user.getId());
+        System.out.println(emprunts);
+
+
 
 
     }

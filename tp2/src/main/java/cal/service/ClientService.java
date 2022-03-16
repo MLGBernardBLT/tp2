@@ -1,11 +1,14 @@
 package cal.service;
 
 import cal.model.Bibliotheque;
+import cal.model.Emprunt;
 import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
 import cal.persistence.BibliothequeDao;
 import cal.persistence.BibliothequeDaoH2;
 import cal.persistence.UserDao;
+
+import java.util.List;
 
 public class ClientService {
 
@@ -30,5 +33,9 @@ public class ClientService {
         bibliotheque.getUtilisateurs().add(utilisateur);
 
         userDao.addUserToBibliotheque(utilisateur, bibliotheque);
+    }
+
+    public List<Emprunt> getListeEmprunts(long id) {
+        return userDao.getListeEmprunts(id);
     }
 }
