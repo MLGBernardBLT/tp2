@@ -1,6 +1,8 @@
 package cal.persistence;
 
 import cal.model.Bibliotheque;
+import cal.model.Emprunt;
+import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
 
 import javax.persistence.EntityManager;
@@ -11,17 +13,16 @@ public class UserDaoH2 implements UserDao{
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
 
     @Override
-    public Utilisateur save(Utilisateur user) {
+    public <T> void save(T t) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        em.persist(user);
+        em.persist(t);
 
         em.getTransaction().commit();
         em.close();
-
-        return user;
     }
+
 
     @Override
     public <T> void merge(T t) {
@@ -32,6 +33,13 @@ public class UserDaoH2 implements UserDao{
 
         em.getTransaction().commit();
         em.close();
+    }
+
+    @Override
+    public Utilisateur createUtilisateur(String nom, String prenom) {
+        final Utilisateur emprunteur= new Emprunteur(nom, prenom);
+        save(emprunteur);
+        return emprunteur;
     }
 
 
@@ -47,6 +55,8 @@ public class UserDaoH2 implements UserDao{
 
         return utilisateur;
     }
+
+
 
     @Override
     public void addUserToBibliotheque(Utilisateur utilisateur, Bibliotheque bibliotheque) {
