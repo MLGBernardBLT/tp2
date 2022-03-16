@@ -31,11 +31,17 @@ public class MainTP2 {
         //Test avec un deuxième livre
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
 
-        List<Document> livreRechercher = bibliothequeService.rechercheLivreTitre("Red");
-        System.out.println(livreRechercher);
+        List<Document> livreRechercherTitre = bibliothequeService.rechercheLivreTitre("Red");
+        System.out.println(livreRechercherTitre);
 
         //Test pour voir ce que fait la recherche si il n'y a pas de livre avec la recherche.
         List<Document> livresNonExistant = bibliothequeService.rechercheLivreTitre("PasSuposerFonctionner");
         System.out.println(livresNonExistant);
+
+        List<Document> livreRechercherAuteur = bibliothequeService.rechercheLivreAuteur("Takahiro");
+        System.out.println(livreRechercherAuteur);
+
+        List<Document> livreRechercheAuteurNonExistant = bibliothequeService.rechercheLivreAuteur("Nope");
+        System.out.println(livreRechercheAuteurNonExistant);
     }
 }

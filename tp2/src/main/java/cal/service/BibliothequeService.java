@@ -39,7 +39,11 @@ public class BibliothequeService {
             dao.addLivreToBibliotheque((Livre) livre, bibliotheque);
     }
 
-    public List<Document> rechercheLivreTitre(String recherche) {
-        return dao.rechercheLivreTitre(recherche);
+    public List<Document> rechercheLivreTitre(String titre) {
+        return dao.rechercheLivreTitre(titre);
+    }
+
+    public List<Document> rechercheLivreAuteur(String auteur) {
+        return dao.rechercheLivreAuteur(auteur);
     }
 }

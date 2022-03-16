@@ -118,6 +118,21 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
         }
     }
 
+    @Override
+    public List<Document> rechercheLivreAuteur(String auteur) {
+        final EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        final TypedQuery<Document> query = em.createQuery(
+                "select d from Document d left join fetch d.bibliotheque db where d.auteur LIKE :auteurLivre"
+                   , Document.class);
+        query.setParameter("auteurLivre", auteur);
+        try{
+            return query.getResultList();
+        }catch(NoResultException e){
+            return null;
+        }
+    }
 
 
 //    @Override

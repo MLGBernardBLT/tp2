@@ -19,4 +19,6 @@ public interface BibliothequeDao {
     void addLivreToBibliotheque(Livre livre, Bibliotheque bibliotheque);
 
     List<Document> rechercheLivreTitre(String recherche);
+
+    List<Document> rechercheLivreAuteur(String auteur);
 }
