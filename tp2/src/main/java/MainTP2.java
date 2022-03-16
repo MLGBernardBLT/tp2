@@ -1,4 +1,5 @@
 import cal.model.Bibliotheque;
+import cal.model.Emprunt;
 import cal.model.document.Document;
 import cal.model.utilisateur.Utilisateur;
 import cal.persistence.BibliothequeDaoH2;
@@ -8,6 +9,7 @@ import cal.service.BibliothequeService;
 import cal.service.ClientService;
 import cal.service.EmpruntService;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MainTP2 {
@@ -46,5 +48,7 @@ public class MainTP2 {
         System.out.println(livreRechercheGenre);
         List<Document> livreRechercheGenreFaux = bibliothequeService.rechercheLivreGenre("rien");
         System.out.println(livreRechercheGenreFaux);
+
+        Emprunt emprunt = empruntService.createEmprunt(user, livreRechercheDate, LocalDateTime.now(), LocalDateTime.now().plusDays(21));
     }
 }

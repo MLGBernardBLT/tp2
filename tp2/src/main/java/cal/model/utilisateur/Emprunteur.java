@@ -20,7 +20,7 @@ public class Emprunteur extends Utilisateur {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "emprunteur_id")
     long id;
-    @OneToMany(mappedBy = "emprunteur")
+    @OneToMany(mappedBy = "emprunteur", cascade = CascadeType.ALL)
     private List<Emprunt> emprunts = new ArrayList<>();
 
     public Emprunteur(String nom, String prenom) {

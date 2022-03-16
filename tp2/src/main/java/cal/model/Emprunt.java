@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +28,13 @@ public class Emprunt {
     @JoinColumn(name = "emprunteur_id")
     private Utilisateur emprunteur = new Emprunteur();
 
+    private LocalDateTime dateEmprunt;
+    private LocalDateTime dateRemiseMax;
 
-    private LocalDateTime dateRemise;
-
-    public Emprunt(LocalDateTime dateRemise) {
-        this.dateRemise = dateRemise;
+    public Emprunt(Utilisateur emprunteur, List<Document> documents, LocalDateTime dateEmprunt, LocalDateTime dateRemiseMax) {
+        this.emprunteur = emprunteur;
+        this.documents = documents;
+        this.dateEmprunt = dateEmprunt;
+        this.dateRemiseMax = dateRemiseMax;
     }
 }
