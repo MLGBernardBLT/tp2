@@ -14,11 +14,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @SuperBuilder
 @ToString(callSuper = true)
-public class Livre extends Document{
+public class Livre extends Document {
     private int nbrePage;
 
     public Livre(String titre, String auteur, String editeur, LocalDate anneePublication, String genre, int nbrePage) {
-        super(titre, auteur, editeur, anneePublication, genre );
+        super(titre, auteur, editeur, anneePublication, genre);
         this.nbrePage = nbrePage;
     }
 }

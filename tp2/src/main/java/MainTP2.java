@@ -8,6 +8,7 @@ import cal.persistence.UserDaoH2;
 import cal.service.BibliothequeService;
 import cal.service.ClientService;
 import cal.service.EmpruntService;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,7 +24,7 @@ public class MainTP2 {
 
         clientService.addUserToBibliotheque(user.getId(), bibliotheque.getId());
 
-        Document livre = bibliothequeService.createLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010,8,21 ), "roman", 235);
+        Document livre = bibliothequeService.createLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010, 8, 21), "roman", 235);
 
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
         //Test avec un deuxième livre
@@ -39,9 +40,9 @@ public class MainTP2 {
         List<Document> livreRechercheAuteurNonExistant = bibliothequeService.rechercheLivreAuteur("Nope");
         System.out.println(livreRechercheAuteurNonExistant);
 
-        List<Document> livreRechercheDate = bibliothequeService.rechercheLivreDate(LocalDate.of(2010,8,21 ));
+        List<Document> livreRechercheDate = bibliothequeService.rechercheLivreDate(LocalDate.of(2010, 8, 21));
         System.out.println(livreRechercheDate);
-        List<Document> livreRechercheDateFausse = bibliothequeService.rechercheLivreDate(LocalDate.of(2012,8,21 ));
+        List<Document> livreRechercheDateFausse = bibliothequeService.rechercheLivreDate(LocalDate.of(2012, 8, 21));
         System.out.println(livreRechercheDateFausse);
 
         List<Document> livreRechercheGenre = bibliothequeService.rechercheLivreGenre("roman");
@@ -55,17 +56,15 @@ public class MainTP2 {
         Emprunt emprunt2 = empruntService.createEmprunt(user, livreRechercheDate, LocalDateTime.now(), LocalDateTime.now().plusDays(21));
         System.out.println(emprunt2.getDocuments().get(0)); //Supposer me donner le livre qui reste 0 exemplaires
 
-        try{
+        try {
             Emprunt emprunt3 = empruntService.createEmprunt(user, livreRechercheDate, LocalDateTime.now(), LocalDateTime.now().plusDays(21));
             System.out.println(emprunt3.getDocuments().get(0));
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Donne bien null");
         }
 
         List<Emprunt> emprunts = clientService.getListeEmprunts(user.getId());
         System.out.println(emprunts);
-
-
 
 
     }

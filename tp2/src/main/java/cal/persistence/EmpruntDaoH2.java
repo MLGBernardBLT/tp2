@@ -38,8 +38,8 @@ public class EmpruntDaoH2 implements EmpruntDao {
     @Override
     public Emprunt createEmprunt(Utilisateur user, List<Document> documents, LocalDateTime dateEmprunt, LocalDateTime dateRetourMax) {
         final Emprunt emprunt = new Emprunt(user, documents, dateEmprunt, dateRetourMax);
-        for(Document document : documents){
-            if(!empruntPossible(document)){
+        for (Document document : documents) {
+            if (!empruntPossible(document)) {
                 return null;
             }
             document.pretExemplaire();
@@ -50,7 +50,7 @@ public class EmpruntDaoH2 implements EmpruntDao {
     }
 
     private boolean empruntPossible(Document document) {
-        if(document.getExemplaires() <= 0){
+        if (document.getExemplaires() <= 0) {
             return false;
         }
         return true;

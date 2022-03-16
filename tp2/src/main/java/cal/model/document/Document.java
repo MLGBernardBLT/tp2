@@ -44,10 +44,11 @@ public abstract class Document {
         this.genre = genre;
     }
 
-    public void ajoutExemplaire(){
+    public void ajoutExemplaire() {
         exemplaires++;
     }
-    public void pretExemplaire(){
+
+    public void pretExemplaire() {
         exemplaires--;
     }
 }

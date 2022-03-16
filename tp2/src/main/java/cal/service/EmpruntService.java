@@ -21,6 +21,6 @@ public class EmpruntService {
     }
 
     public Emprunt createEmprunt(Utilisateur user, List<Document> documents, LocalDateTime dateEmprunt, LocalDateTime dateRetourMax) {
-        return daoEmprunt.createEmprunt(user, documents,dateEmprunt, dateRetourMax);
+        return daoEmprunt.createEmprunt(user, documents, dateEmprunt, dateRetourMax);
     }
 }

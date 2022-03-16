@@ -1,4 +1,5 @@
 package cal.persistence;
+
 import cal.model.Bibliotheque;
 import cal.model.document.Document;
 import cal.model.document.Livre;
@@ -9,9 +10,13 @@ import java.util.List;
 
 public interface BibliothequeDao {
     <T> void save(T t);
+
     <T> void merge(T t);
+
     Bibliotheque createBibliotheque(String nom);
-    Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, String genre,int nbrePage);
+
+    Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, String genre, int nbrePage);
+
     Bibliotheque getBibliotheque(long bibliothequeId);
 
     Document getLivre(long livreId);

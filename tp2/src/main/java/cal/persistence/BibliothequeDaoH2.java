@@ -13,7 +13,6 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
 
 
-
     @Override
     public <T> void save(T t) {
         final EntityManager em = emf.createEntityManager();
@@ -44,7 +43,7 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     }
 
     @Override
-    public Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, String genre,int nbrePage) {
+    public Document createLivre(String titre, String auteur, String editeur, LocalDate anneePublication, String genre, int nbrePage) {
         final Document livre = new Livre(titre, auteur, editeur, anneePublication, genre, nbrePage);
         save(livre);
         return livre;
@@ -76,7 +75,7 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
 
     @Override
     public void addLivreToBibliotheque(Livre livre, Bibliotheque bibliotheque) {
-        if(livreExist(livre)){
+        if (livreExist(livre)) {
             livre.ajoutExemplaire();
         }
         merge(livre);
@@ -91,12 +90,12 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
                 "select d from Document d left join fetch d.bibliotheque db where d.id = :livreId"
                 , Document.class);
         query.setParameter("livreId", livre.getId());
-        try{
+        try {
             query.getSingleResult();
             em.getTransaction().commit();
             em.close();
             return true;
-        }catch (NoResultException e){
+        } catch (NoResultException e) {
             em.getTransaction().commit();
             em.close();
             return false;
@@ -110,11 +109,11 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
 
         final TypedQuery<Document> query = em.createQuery(
                 "select d from Document d left join fetch d.bibliotheque db where d.titre LIKE :livreTitre"
-                   , Document.class);
-        query.setParameter("livreTitre", "%" +recherche + "%");
-        try{
+                , Document.class);
+        query.setParameter("livreTitre", "%" + recherche + "%");
+        try {
             return query.getResultList();
-        }catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -126,11 +125,11 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
 
         final TypedQuery<Document> query = em.createQuery(
                 "select d from Document d left join fetch d.bibliotheque db where d.auteur LIKE :auteurLivre"
-                   , Document.class);
+                , Document.class);
         query.setParameter("auteurLivre", auteur);
-        try{
+        try {
             return query.getResultList();
-        }catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -142,11 +141,11 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
 
         final TypedQuery<Document> query = em.createQuery(
                 "select d from Document d left join fetch d.bibliotheque db where d.anneePublication = :datePublication"
-                   , Document.class);
+                , Document.class);
         query.setParameter("datePublication", date);
         try {
             return query.getResultList();
-        }catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -158,11 +157,11 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
 
         final TypedQuery<Document> query = em.createQuery(
                 "select d from Document d left join fetch d.bibliotheque db where d.genre LIKE :livreGenre",
-                   Document.class);
+                Document.class);
         query.setParameter("livreGenre", genre);
-        try{
+        try {
             return query.getResultList();
-        }catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
         }
     }
