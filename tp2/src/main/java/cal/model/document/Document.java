@@ -40,8 +40,4 @@ public abstract class Document {
         this.editeur = editeur;
         this.anneePublication = anneePublication;
     }
-
-    public long getId() {
-        return id;
-    }
 }

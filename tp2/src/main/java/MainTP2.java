@@ -10,6 +10,7 @@ import cal.service.BibliothequeService;
 import cal.service.ClientService;
 import cal.service.EmpruntService;
 
+import javax.print.Doc;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -31,7 +32,10 @@ public class MainTP2 {
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
 
         List<Document> livreRechercher = bibliothequeService.rechercheLivreTitre("Red");
-
         System.out.println(livreRechercher);
+
+        //Test pour voir ce que fait la recherche si il n'y a pas de livre avec la recherche.
+        List<Document> livresNonExistant = bibliothequeService.rechercheLivreTitre("PasSuposerFonctionner");
+        System.out.println(livresNonExistant);
     }
 }
