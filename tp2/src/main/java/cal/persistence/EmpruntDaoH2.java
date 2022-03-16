@@ -25,6 +25,17 @@ public class EmpruntDaoH2 implements EmpruntDao {
     }
 
     @Override
+    public <T> void merge(T t) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        em.merge(t);
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    @Override
     public Emprunt createEmprunt(Utilisateur user, List<Document> documents, LocalDateTime dateEmprunt, LocalDateTime dateRetourMax) {
         final Emprunt emprunt = new Emprunt(user, documents, dateEmprunt, dateRetourMax);
         save(emprunt);

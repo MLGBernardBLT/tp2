@@ -5,6 +5,7 @@ import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ public class Emprunt {
 
     @ManyToOne
     @JoinColumn(name = "emprunteur_id")
+    @ToString.Exclude
     private Utilisateur emprunteur = new Emprunteur();
 
     private LocalDateTime dateEmprunt;

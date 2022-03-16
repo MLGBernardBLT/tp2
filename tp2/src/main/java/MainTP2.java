@@ -1,6 +1,7 @@
 import cal.model.Bibliotheque;
 import cal.model.Emprunt;
 import cal.model.document.Document;
+import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
 import cal.persistence.BibliothequeDaoH2;
 import cal.persistence.EmpruntDaoH2;
@@ -16,7 +17,7 @@ public class MainTP2 {
     public static void main(String[] args) {
         ClientService clientService = new ClientService(new UserDaoH2(), new BibliothequeDaoH2());
         BibliothequeService bibliothequeService = new BibliothequeService(new BibliothequeDaoH2());
-        EmpruntService empruntService = new EmpruntService(new EmpruntDaoH2());
+        EmpruntService empruntService = new EmpruntService(new EmpruntDaoH2(), new UserDaoH2());
 
         Bibliotheque bibliotheque = bibliothequeService.createBibliotheque("JavaTown");
         Utilisateur user = clientService.createUser("Thomas Laforest", "Bernard");
