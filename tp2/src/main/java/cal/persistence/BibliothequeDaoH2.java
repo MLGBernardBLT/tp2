@@ -5,8 +5,8 @@ import cal.model.document.Document;
 import cal.model.document.Livre;
 
 import javax.persistence.*;
-import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.util.List;
 
 public class BibliothequeDaoH2 implements BibliothequeDao {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
@@ -77,12 +77,9 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
     public void addLivreToBibliotheque(Livre livre, Bibliotheque bibliotheque) {
         if(livreExist(livre)){
             livre.ajoutExemplaire();
-            merge(livre);
-            merge(bibliotheque);
-        }else {
-            merge(livre);
-            merge(bibliotheque);
         }
+        merge(livre);
+        merge(bibliotheque);
     }
 
     private boolean livreExist(Livre livre) {
@@ -91,7 +88,7 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
 
         final TypedQuery<Document> query = em.createQuery(
                 "select d from Document d left join fetch d.bibliotheque db where d.id = :livreId"
-                    , Document.class);
+                , Document.class);
         query.setParameter("livreId", livre.getId());
         try{
             query.getSingleResult();
@@ -104,6 +101,24 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
             return false;
         }
     }
+
+    @Override
+    public List<Document> rechercheLivreTitre(String recherche) {
+        final EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        final TypedQuery<Document> query = em.createQuery(
+                "select d from Document d left join fetch d.bibliotheque db where d.titre LIKE :livreTitre"
+                   , Document.class);
+        query.setParameter("livreTitre", "%" +recherche + "%");
+        try{
+            return query.getResultList();
+        }catch(NoResultException e){
+            return null;
+        }
+    }
+
+
 
 //    @Override
 //    public Bibliotheque getBibliothequeAvecUtilisateur(long id) {

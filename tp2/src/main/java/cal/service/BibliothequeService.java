@@ -6,10 +6,8 @@ import cal.model.document.Livre;
 import cal.persistence.BibliothequeDao;
 import cal.persistence.BibliothequeDaoH2;
 
-import javax.management.Query;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class BibliothequeService {
@@ -39,5 +37,9 @@ public class BibliothequeService {
             bibliotheque.getDocuments().add(livre);
 
             dao.addLivreToBibliotheque((Livre) livre, bibliotheque);
+    }
+
+    public List<Document> rechercheLivreTitre(String recherche) {
+        return dao.rechercheLivreTitre(recherche);
     }
 }

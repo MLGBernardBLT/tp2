@@ -4,6 +4,7 @@ import cal.model.Bibliotheque;
 import cal.model.Emprunt;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public abstract class Document {
 
     @ManyToOne
     @JoinColumn(name = "bibliotheque_id")
+    @ToString.Exclude
     private Bibliotheque bibliotheque;
 
     @ManyToMany

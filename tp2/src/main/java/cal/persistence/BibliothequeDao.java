@@ -5,6 +5,7 @@ import cal.model.document.Livre;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface BibliothequeDao {
     <T> void save(T t);
@@ -16,4 +17,6 @@ public interface BibliothequeDao {
     Document getLivre(long livreId);
 
     void addLivreToBibliotheque(Livre livre, Bibliotheque bibliotheque);
+
+    List<Document> rechercheLivreTitre(String recherche);
 }

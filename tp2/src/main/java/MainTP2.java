@@ -11,6 +11,7 @@ import cal.service.ClientService;
 import cal.service.EmpruntService;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class MainTP2 {
     public static void main(String[] args) {
@@ -28,5 +29,9 @@ public class MainTP2 {
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
         //Test avec un deuxième livre
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
+
+        List<Document> livreRechercher = bibliothequeService.rechercheLivreTitre("Red");
+
+        System.out.println(livreRechercher);
     }
 }
