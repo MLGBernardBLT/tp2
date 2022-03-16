@@ -42,6 +42,9 @@ public class MainTP2 {
         List<Document> livreRechercheDateFausse = bibliothequeService.rechercheLivreDate(LocalDate.of(2012,8,21 ));
         System.out.println(livreRechercheDateFausse);
 
-
+        List<Document> livreRechercheGenre = bibliothequeService.rechercheLivreGenre("roman");
+        System.out.println(livreRechercheGenre);
+        List<Document> livreRechercheGenreFaux = bibliothequeService.rechercheLivreGenre("rien");
+        System.out.println(livreRechercheGenreFaux);
     }
 }

@@ -23,4 +23,6 @@ public interface BibliothequeDao {
     List<Document> rechercheLivreAuteur(String auteur);
 
     List<Document> rechercheLivreDate(LocalDate date);
+
+    List<Document> rechercheLivreGenre(String genre);
 }

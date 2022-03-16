@@ -50,4 +50,8 @@ public class BibliothequeService {
     public List<Document> rechercheLivreDate(LocalDate date) {
         return dao.rechercheLivreDate(date);
     }
+
+    public List<Document> rechercheLivreGenre(String genre) {
+       return  dao.rechercheLivreGenre(genre);
+    }
 }
