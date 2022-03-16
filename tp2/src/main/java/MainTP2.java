@@ -51,5 +51,18 @@ public class MainTP2 {
         System.out.println(livreRechercheGenreFaux);
 
         Emprunt emprunt = empruntService.createEmprunt(user, livreRechercheDate, LocalDateTime.now(), LocalDateTime.now().plusDays(21));
+        System.out.println(emprunt.getDocuments().get(0)); //Supposer me donner le livre qui reste 1 exemplaire.
+
+        Emprunt emprunt2 = empruntService.createEmprunt(user, livreRechercheDate, LocalDateTime.now(), LocalDateTime.now().plusDays(21));
+        System.out.println(emprunt2.getDocuments().get(0)); //Supposer me donner le livre qui reste 0 exemplaires
+
+        try{
+            Emprunt emprunt3 = empruntService.createEmprunt(user, livreRechercheDate, LocalDateTime.now(), LocalDateTime.now().plusDays(21));
+            System.out.println(emprunt3.getDocuments().get(0));
+        }catch(NullPointerException e){
+            System.out.println("Donne bien null");
+        }
+
+
     }
 }

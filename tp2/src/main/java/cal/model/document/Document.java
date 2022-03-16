@@ -34,6 +34,7 @@ public abstract class Document {
 
     @ManyToMany
     private List<Emprunt> emprunts = new ArrayList<>();
+    private int exemplaires;
 
     public Document(String titre, String auteur, String editeur, LocalDate anneePublication, String genre) {
         this.titre = titre;
@@ -41,5 +42,12 @@ public abstract class Document {
         this.editeur = editeur;
         this.anneePublication = anneePublication;
         this.genre = genre;
+    }
+
+    public void ajoutExemplaire(){
+        exemplaires++;
+    }
+    public void pretExemplaire(){
+        exemplaires--;
     }
 }
