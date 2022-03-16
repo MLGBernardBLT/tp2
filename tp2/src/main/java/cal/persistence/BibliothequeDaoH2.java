@@ -5,6 +5,7 @@ import cal.model.document.Document;
 import cal.model.document.Livre;
 
 import javax.persistence.*;
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -134,22 +135,22 @@ public class BibliothequeDaoH2 implements BibliothequeDao {
         }
     }
 
+    @Override
+    public List<Document> rechercheLivreDate(LocalDate date) {
+        final EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
 
-//    @Override
-//    public Bibliotheque getBibliothequeAvecUtilisateur(long id) {
-//        final EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
-//
-//        final TypedQuery<Bibliotheque> query = em.createQuery(
-//                "SELECT b from Bibliotheque b LEFT JOIN FETCH b.utilisateurs bu WHERE b.id = :bibliothequeId"
-//                , Bibliotheque.class);
-//        query.setParameter("bibliothequeId", id);
-//        final Bibliotheque bibliotheque = query.getSingleResult();
-//
-//        em.getTransaction().commit();
-//        em.close();
-//        return bibliotheque;
-//    }
+        final TypedQuery<Document> query = em.createQuery(
+                "select d from Document d left join fetch d.bibliotheque db where d.anneePublication = :datePublication"
+                   , Document.class);
+        query.setParameter("datePublication", date);
+        try {
+            return query.getResultList();
+        }catch(NoResultException e){
+            return null;
+        }
+    }
+
 
 
 }

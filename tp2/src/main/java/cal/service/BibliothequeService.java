@@ -46,4 +46,8 @@ public class BibliothequeService {
     public List<Document> rechercheLivreAuteur(String auteur) {
         return dao.rechercheLivreAuteur(auteur);
     }
+
+    public List<Document> rechercheLivreDate(LocalDate date) {
+        return dao.rechercheLivreDate(date);
+    }
 }
