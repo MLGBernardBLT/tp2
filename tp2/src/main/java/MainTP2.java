@@ -4,9 +4,9 @@ import cal.model.document.Document;
 import cal.model.utilisateur.Utilisateur;
 import cal.persistence.BibliothequeDaoH2;
 import cal.persistence.EmpruntDaoH2;
-import cal.persistence.UserDaoH2;
+import cal.persistence.UtilisateurDaoH2;
 import cal.service.BibliothequeService;
-import cal.service.ClientService;
+import cal.service.UtilisateurService;
 import cal.service.EmpruntService;
 
 import java.time.LocalDate;
@@ -15,14 +15,14 @@ import java.util.List;
 
 public class MainTP2 {
     public static void main(String[] args) {
-        ClientService clientService = new ClientService(new UserDaoH2(), new BibliothequeDaoH2());
+        UtilisateurService clientService = new UtilisateurService(new UtilisateurDaoH2(), new BibliothequeDaoH2());
         BibliothequeService bibliothequeService = new BibliothequeService(new BibliothequeDaoH2());
-        EmpruntService empruntService = new EmpruntService(new EmpruntDaoH2(), new UserDaoH2());
+        EmpruntService empruntService = new EmpruntService(new EmpruntDaoH2(), new UtilisateurDaoH2());
 
         Bibliotheque bibliotheque = bibliothequeService.createBibliotheque("JavaTown");
         Utilisateur user = clientService.createUser("Thomas Laforest", "Bernard");
 
-        clientService.addUserToBibliotheque(user.getId(), bibliotheque.getId());
+        clientService.addUtilisateurToBibliotheque(user.getId(), bibliotheque.getId());
 
         Document livre = bibliothequeService.createLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010, 8, 21), "roman", 235);
 

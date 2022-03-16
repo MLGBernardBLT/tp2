@@ -7,16 +7,16 @@ import cal.model.utilisateur.Utilisateur;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UtilisateurDao {
     <T> void save(T t);
 
     <T> void merge(T t);
 
-    Utilisateur getUser(long id);
+    Utilisateur getUtilisateur(long id);
 
     Utilisateur createUtilisateur(String nom, String prenom);
 
-    void addUserToBibliotheque(Utilisateur utilisateur, Bibliotheque bibliotheque);
+    void addUtilisateurToBibliotheque(Utilisateur utilisateur, Bibliotheque bibliotheque);
 
     List<Emprunt> getListeEmprunts(long id);
 }

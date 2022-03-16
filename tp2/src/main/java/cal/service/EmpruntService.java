@@ -2,20 +2,19 @@ package cal.service;
 
 import cal.model.Emprunt;
 import cal.model.document.Document;
-import cal.model.utilisateur.Emprunteur;
 import cal.model.utilisateur.Utilisateur;
 import cal.persistence.EmpruntDao;
 import cal.persistence.EmpruntDaoH2;
-import cal.persistence.UserDao;
+import cal.persistence.UtilisateurDao;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class EmpruntService {
     private EmpruntDao daoEmprunt;
-    private UserDao daoUtilisateur;
+    private UtilisateurDao daoUtilisateur;
 
-    public EmpruntService(EmpruntDaoH2 empruntDao, UserDao daoUtilisateur) {
+    public EmpruntService(EmpruntDaoH2 empruntDao, UtilisateurDao daoUtilisateur) {
         this.daoEmprunt = empruntDao;
         this.daoUtilisateur = daoUtilisateur;
     }
